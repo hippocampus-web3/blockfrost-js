@@ -5,7 +5,7 @@ import {
   NetworkInfo,
   Credential,
   RewardAddress,
-} from '@emurgo/cardano-serialization-lib-nodejs';
+} from '@emurgo/cardano-serialization-lib-asmjs';
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
 import { SignatureVerificationError } from './errors';
