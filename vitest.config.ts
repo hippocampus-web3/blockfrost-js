@@ -9,9 +9,9 @@ export default defineConfig({
       include: ['src'],
     },
     include: ['./test/tests/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    alias: {
-      '@emurgo/cardano-serialization-lib-asmjs':
-        '/node_modules/@emurgo/cardano-serialization-lib-asmjs/cardano_serialization_lib.js',
-    },
+    // alias: {
+    //   '@emurgo/cardano-serialization-lib-asmjs':
+    //     '/node_modules/@emurgo/cardano-serialization-lib-asmjs/cardano_serialization_lib.js',
+    // },
   },
 });

@@ -1,5 +1,5 @@
 {
-  "name": "@blockfrost/blockfrost-js",
+  "name": "@hippocampus-web3/blockfrost-js",
   "version": "6.0.0",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "author": "blockfrost.io",
   "main": "lib/index.js",
+  "types": "lib/src/index.d.ts",
   "files": [
     "lib/**/*.js",
     "lib/**/*.ts"
@@ -28,8 +29,8 @@
   },
   "dependencies": {
     "@blockfrost/openapi": "0.1.73",
-    "@emurgo/cardano-serialization-lib-asmjs": "^13.2.1",
     "@emurgo/cip14-js": "3.0.1",
+    "@hippocampus-web3/cardano-serialization-lib-asmjs": "^14.1.1",
     "bottleneck": "^2.19.5",
     "form-data": "^4.0.0",
     "got": "^11.8.6",
@@ -66,5 +67,8 @@
   "packageManager": "yarn@4.0.0",
   "engines": {
     "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
