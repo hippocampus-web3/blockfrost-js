@@ -33,7 +33,7 @@ export async function utilsTxsEvaluate(
       body: tx,
       headers: { 'Content-type': 'application/cbor' },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -65,7 +65,7 @@ export async function utilsTxsEvaluateUtxos(
       }),
       headers: { 'Content-type': 'application/json' },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

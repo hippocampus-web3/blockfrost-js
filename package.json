@@ -1,6 +1,6 @@
 {
   "name": "@hippocampus-web3/blockfrost-js",
-  "version": "6.0.0",
+  "version": "6.0.4",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
@@ -30,11 +30,11 @@
   "dependencies": {
     "@blockfrost/openapi": "0.1.73",
     "@emurgo/cip14-js": "3.0.1",
-    "@hippocampus-web3/cardano-serialization-lib-asmjs": "^14.1.1",
+    "@hippocampus-web3/cardano-serialization-lib-asmjs": "^14.1.5",
     "bottleneck": "^2.19.5",
     "form-data": "^4.0.0",
-    "got": "^11.8.6",
-    "json-bigint": "^1.0.0"
+    "json-bigint": "^1.0.0",
+    "ky": "^1.7.5"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.3",

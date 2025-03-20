@@ -14,7 +14,7 @@ import {
   AllMethodOptions,
   BlockfrostNetwork,
 } from '../types';
-import { RetryObject } from 'got';
+
 import { RATE_LIMITER_DEFAULT_CONFIG } from './limiter';
 
 export const isDebugEnabled = () => process.env.BLOCKFROST_DEBUG === 'true';
@@ -60,31 +60,31 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     version: options.version || DEFAULT_API_VERSION,
     debug,
     http2: options.http2 ?? false,
-    gotOptions: options.gotOptions || undefined,
+    // gotOptions: options.gotOptions || undefined, // TODO: Enabley kyOptions
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
-    retrySettings: options.retrySettings ?? {
-      limit: 3, // retry count
-      methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'], // no retry on POST
-      statusCodes: [408, 413, 429, 500, 502, 503, 504, 520, 521, 522, 524],
-      errorCodes: [
-        'ETIMEDOUT',
-        'ECONNRESET',
-        'EADDRINUSE',
-        'ECONNREFUSED',
-        'EPIPE',
-        'ENOTFOUND',
-        'ENETUNREACH',
-        'EAI_AGAIN',
-        'EPROTO',
-      ],
-      calculateDelay: (retryObject: RetryObject) => {
-        return retryObject.computedValue !== 0 ? 1000 : 0;
-      },
-      // maxRetryAfter: undefined,
-      // backoffLimit: Number.POSITIVE_INFINITY,
-      // noise: 100
-    },
+    // retrySettings: options.retrySettings ?? { // TODO: Enable retry settings
+    //   limit: 3, // retry count
+    //   methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'], // no retry on POST
+    //   statusCodes: [408, 413, 429, 500, 502, 503, 504, 520, 521, 522, 524],
+    //   errorCodes: [
+    //     'ETIMEDOUT',
+    //     'ECONNRESET',
+    //     'EADDRINUSE',
+    //     'ECONNREFUSED',
+    //     'EPIPE',
+    //     'ENOTFOUND',
+    //     'ENETUNREACH',
+    //     'EAI_AGAIN',
+    //     'EPROTO',
+    //   ],
+    //   calculateDelay: (retryObject: RetryObject) => {
+    //     return retryObject.computedValue !== 0 ? 1000 : 0;
+    //   },
+    //   // maxRetryAfter: undefined,
+    //   // backoffLimit: Number.POSITIVE_INFINITY,
+    //   // noise: 100
+    // },
   };
 };
 

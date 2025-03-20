@@ -3,7 +3,6 @@
 const typescript = require('@rollup/plugin-typescript');
 const resolve = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
-const { terser } = require('rollup-plugin-terser');
 const pkg = require('./package.json');
 
 // eslint-disable-next-line no-undef
@@ -24,10 +23,13 @@ module.exports = {
     resolve({
       preferBuiltins: true,
     }),
-    commonjs(),
+    commonjs({
+      include: /node_modules\/ky/,
+      requireReturnsDefault: 'auto',
+    }),
   ],
   external: [
-    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.dependencies || {}).filter(dep => dep !== 'ky'),
     ...Object.keys(pkg.peerDependencies || {}),
   ],
 };

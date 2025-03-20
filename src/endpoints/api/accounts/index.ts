@@ -20,7 +20,7 @@ export async function accounts(
     const res = await this.instance<components['schemas']['account_content']>(
       `accounts/${stakeAddress}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -52,7 +52,7 @@ export async function accountsRewards(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -106,7 +106,7 @@ export async function accountsHistory(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -160,7 +160,7 @@ export async function accountsWithdrawals(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -214,7 +214,7 @@ export async function accountsMirs(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -268,7 +268,7 @@ export async function accountsDelegations(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -322,7 +322,7 @@ export async function accountsRegistrations(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -379,7 +379,7 @@ export async function accountsAddresses(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -436,7 +436,7 @@ export async function accountsAddressesAssets(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -480,7 +480,7 @@ export async function accountsAddressesTotal(
     const res = await this.instance<
       components['schemas']['account_addresses_total']
     >(`accounts/${stakeAddress}/addresses/total`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

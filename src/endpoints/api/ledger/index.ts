@@ -15,7 +15,7 @@ export async function genesis(
   try {
     const res =
       await this.instance<components['schemas']['genesis_content']>(`genesis`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

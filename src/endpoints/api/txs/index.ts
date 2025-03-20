@@ -18,7 +18,7 @@ export async function txs(
     const res = await this.instance<components['schemas']['tx_content']>(
       `txs/${hash}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -40,7 +40,7 @@ export async function txsUtxos(
     const res = await this.instance<components['schemas']['tx_content_utxo']>(
       `txs/${hash}/utxos`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -62,7 +62,7 @@ export async function txsStakes(
     const res = await this.instance<
       components['schemas']['tx_content_stake_addr']
     >(`txs/${hash}/stakes`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -84,7 +84,7 @@ export async function txsDelegations(
     const res = await this.instance<
       components['schemas']['tx_content_delegations']
     >(`txs/${hash}/delegations`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -106,7 +106,7 @@ export async function txsWithdrawals(
     const res = await this.instance<
       components['schemas']['tx_content_withdrawals']
     >(`txs/${hash}/withdrawals`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -128,7 +128,7 @@ export async function txsMirs(
     const res = await this.instance<components['schemas']['tx_content_mirs']>(
       `txs/${hash}/mirs`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -150,7 +150,7 @@ export async function txsPoolUpdates(
     const res = await this.instance<
       components['schemas']['tx_content_pool_certs']
     >(`txs/${hash}/pool_updates`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -172,7 +172,7 @@ export async function txsPoolRetires(
     const res = await this.instance<
       components['schemas']['tx_content_pool_retires']
     >(`txs/${hash}/pool_retires`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -194,7 +194,7 @@ export async function txsMetadata(
     const res = await this.instance<
       components['schemas']['tx_content_metadata']
     >(`txs/${hash}/metadata`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -216,7 +216,7 @@ export async function txsMetadataCbor(
     const res = await this.instance<
       components['schemas']['tx_content_metadata_cbor']
     >(`txs/${hash}/metadata/cbor`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -238,7 +238,7 @@ export async function txsRedeemers(
     const res = await this.instance<
       components['schemas']['tx_content_redeemers']
     >(`txs/${hash}/redeemers`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -260,7 +260,7 @@ export async function txsRequiredSigners(
     const res = await this.instance<
       components['schemas']['tx_content_required_signers']
     >(`txs/${hash}/required_signers`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -282,7 +282,7 @@ export async function txsCbor(
     const res = await this.instance<components['schemas']['tx_content_cbor']>(
       `txs/${hash}/cbor`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -309,11 +309,12 @@ export async function txSubmit(
   }
 
   try {
-    const res = await this.instance.post(`tx/submit`, {
+    const res = await this.instance.post('tx/submit', {
       body: tx,
-      headers: { 'Content-type': 'application/cbor' },
+      headers: { 'Content-Type': 'application/cbor' },
     });
-    return res.body;
+
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

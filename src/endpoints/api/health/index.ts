@@ -15,7 +15,7 @@ export async function health(
 ): Promise<{ is_healthy: boolean }> {
   try {
     const res = await this.instance<{ is_healthy: boolean }>(`health`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -33,7 +33,7 @@ export async function healthClock(
 ): Promise<{ server_time: number }> {
   try {
     const res = await this.instance<{ server_time: number }>(`health/clock`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

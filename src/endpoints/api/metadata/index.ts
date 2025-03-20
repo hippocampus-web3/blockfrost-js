@@ -28,7 +28,7 @@ export async function metadataTxsLabels(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -60,7 +60,7 @@ export async function metadataTxsLabel(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -92,7 +92,7 @@ export async function metadataTxsLabelCbor(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

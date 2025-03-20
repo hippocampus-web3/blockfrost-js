@@ -15,7 +15,7 @@ export async function metrics(
   try {
     const res =
       await this.instance<components['schemas']['metrics']>(`metrics`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -36,7 +36,7 @@ export async function metricsEndpoints(
       await this.instance<components['schemas']['metrics']>(
         `metrics/endpoints`,
       );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

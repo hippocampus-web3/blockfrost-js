@@ -20,7 +20,7 @@ export async function epochs(
     const res = await this.instance<components['schemas']['epoch_content']>(
       `epochs/${number}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -41,7 +41,7 @@ export async function epochsLatest(
       await this.instance<components['schemas']['epoch_content']>(
         `epochs/latest`,
       );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -59,7 +59,7 @@ export async function epochsLatest(
 export async function epochsNext(
   this: BlockFrostAPI,
   number: number,
-  pagination?: Omit<PaginationOptions, 'order'>,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -72,7 +72,7 @@ export async function epochsNext(
         count: paginationOptions.count,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -90,7 +90,7 @@ export async function epochsNext(
 export async function epochsPrevious(
   this: BlockFrostAPI,
   number: number,
-  pagination?: Omit<PaginationOptions, 'order'>,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -103,7 +103,7 @@ export async function epochsPrevious(
         count: paginationOptions.count,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -135,7 +135,7 @@ export async function epochsStakes(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -191,7 +191,7 @@ export async function epochsStakesByPoolId(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -247,7 +247,7 @@ export async function epochsBlocks(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -303,7 +303,7 @@ export async function epochsBlocksByPoolId(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -349,7 +349,7 @@ export async function epochsParameters(
     const res = await this.instance<
       components['schemas']['epoch_param_content']
     >(`epochs/${number}/parameters`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -369,7 +369,7 @@ export async function epochsLatestParameters(
     const res = await this.instance<
       components['schemas']['epoch_param_content']
     >(`epochs/latest/parameters`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

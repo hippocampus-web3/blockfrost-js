@@ -20,7 +20,7 @@ export async function scriptsByHash(
     const res = await this.instance<components['schemas']['script']>(
       `scripts/${scriptHash}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -41,17 +41,15 @@ export async function scripts(
   const paginationOptions = getPaginationOptions(pagination);
 
   try {
-    const res = await this.instance<components['schemas']['scripts']>(
-      `scripts`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+    const res = await this.instance.get('scripts', {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    );
-    return res.body;
+    });
+
+    return await res.json<components['schemas']['scripts']>();
   } catch (error) {
     throw handleError(error);
   }
@@ -73,7 +71,7 @@ export async function scriptsJson(
     const res = await this.instance<components['schemas']['script_json']>(
       `scripts/${scriptHash}/json`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -95,7 +93,7 @@ export async function scriptsCbor(
     const res = await this.instance<components['schemas']['script_cbor']>(
       `scripts/${scriptHash}/cbor`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -117,7 +115,7 @@ export async function scriptsDatum(
     const res = await this.instance<components['schemas']['script_datum']>(
       `scripts/datum/${datumHash}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -139,7 +137,7 @@ export async function scriptsDatumCbor(
     const res = await this.instance<components['schemas']['script_datum_cbor']>(
       `scripts/datum/${datumHash}/cbor`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -161,7 +159,7 @@ export async function scriptsRedeemers(
     const res = await this.instance<components['schemas']['script_redeemers']>(
       `scripts/${scriptHash}/redeemers`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

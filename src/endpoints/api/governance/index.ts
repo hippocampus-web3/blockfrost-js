@@ -34,7 +34,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -53,7 +53,7 @@ export class GovernanceAPI {
       const res = await this.blockfrostAPI.instance<
         components['schemas']['drep']
       >(`governance/dreps/${drepId}`);
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -83,7 +83,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -113,7 +113,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -164,7 +164,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -215,7 +215,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -264,7 +264,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -287,7 +287,7 @@ export class GovernanceAPI {
       const res = await this.blockfrostAPI.instance<
         components['schemas']['proposal']
       >(`governance/proposals/${txHash}/${certIndex}`);
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -310,7 +310,7 @@ export class GovernanceAPI {
       const res = await this.blockfrostAPI.instance<
         components['schemas']['proposal_parameters']
       >(`governance/proposals/${txHash}/${certIndex}/parameters`);
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -342,7 +342,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -397,7 +397,7 @@ export class GovernanceAPI {
           order: paginationOptions.order,
         },
       });
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }
@@ -443,7 +443,7 @@ export class GovernanceAPI {
       const res = await this.blockfrostAPI.instance<
         components['schemas']['proposal_metadata']
       >(`governance/proposals/${txHash}/${certIndex}/metadata`);
-      return res.body;
+      return await res.json();
     } catch (error) {
       throw handleError(error);
     }

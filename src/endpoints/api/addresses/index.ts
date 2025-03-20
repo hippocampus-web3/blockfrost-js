@@ -11,7 +11,7 @@ import {
   AdditionalEndpointOptions,
   AllMethodOptions,
 } from '../../../types';
-import { HTTPError } from 'got';
+import { HTTPError } from 'ky';
 
 /**
  * Obtains information about a specific address.
@@ -29,7 +29,7 @@ export async function addresses(
     const res = await this.instance<components['schemas']['address_content']>(
       `addresses/${address}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -52,7 +52,7 @@ export async function addressesTotal(
     const res = await this.instance<
       components['schemas']['address_content_total']
     >(`addresses/${address}/total`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -75,7 +75,7 @@ export async function addressesExtended(
     const res = await this.instance<
       components['schemas']['address_content_extended']
     >(`addresses/${address}/extended`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -108,13 +108,13 @@ export async function addressesTransactions(
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
-        from: additionalParams.from,
-        to: additionalParams.to,
+        from: additionalParams.from as string,
+        to: additionalParams.to as string,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
-    if (error instanceof HTTPError && error.response.statusCode === 404) {
+    if (error instanceof HTTPError && error.response.status === 404) {
       return [];
     }
     throw handleError(error);
@@ -173,7 +173,7 @@ export async function addressesUtxos(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -230,7 +230,7 @@ export async function addressesUtxosAsset(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

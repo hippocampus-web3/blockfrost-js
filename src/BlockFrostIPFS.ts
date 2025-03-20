@@ -1,15 +1,8 @@
 /* eslint-disable tsdoc/syntax */
 import { API_URLS } from './config';
-import { Got } from 'got';
+import { KyInstance } from 'ky';
 import Bottleneck from 'bottleneck';
-import {
-  add,
-  list,
-  pin,
-  listByPath,
-  pinRemove,
-  gateway,
-} from './endpoints/ipfs';
+import { list, pin, listByPath, pinRemove, gateway } from './endpoints/ipfs';
 import { Options, ValidatedOptions } from './types';
 import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
@@ -27,7 +20,7 @@ class BlockFrostIPFS {
   /** @ignore */
   options: ValidatedOptions;
   /** @ignore */
-  instance: Got;
+  instance: KyInstance;
   /** @ignore */
   rateLimiter: Bottleneck | undefined;
 
@@ -58,7 +51,7 @@ class BlockFrostIPFS {
     this.projectId = this.options.projectId;
   }
 
-  add = add;
+  // add = add;
   gateway = gateway;
   pin = pin;
   listByPath = listByPath;

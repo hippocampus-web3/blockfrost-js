@@ -1,6 +1,6 @@
 /* eslint-disable tsdoc/syntax */
 import { API_URLS } from './config';
-import { Got } from 'got';
+import { KyInstance } from 'ky';
 import Bottleneck from 'bottleneck';
 
 import {
@@ -171,7 +171,7 @@ class BlockFrostAPI {
   /** @ignore */
   options: ValidatedOptions;
   /** @ignore */
-  instance: Got;
+  instance: KyInstance;
   /** @ignore */
   rateLimiter: Bottleneck | undefined;
   governance: GovernanceAPI;

@@ -12,7 +12,7 @@ export async function root(
 ): Promise<{ url: string; version: string }> {
   try {
     const res = await this.instance<{ url: string; version: string }>(``);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

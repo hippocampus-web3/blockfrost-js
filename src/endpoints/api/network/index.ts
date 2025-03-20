@@ -15,7 +15,7 @@ export async function network(
   try {
     const res =
       await this.instance<components['schemas']['network']>(`network`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -36,7 +36,7 @@ export async function networkEras(
       await this.instance<components['schemas']['network-eras']>(
         `network/eras`,
       );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
