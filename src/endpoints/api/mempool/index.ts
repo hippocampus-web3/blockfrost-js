@@ -31,7 +31,7 @@ export async function mempool(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -75,7 +75,7 @@ export async function mempoolTx(
     const res = await this.instance<
       components['schemas']['mempool_tx_content']
     >(`mempool/${hash}`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -109,7 +109,7 @@ export async function mempoolByAddress(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

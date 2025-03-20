@@ -132,7 +132,7 @@ export default [
     command: (SDK: BlockFrostAPI) =>
       SDK.accountsWithdrawals(
         'stake1u88xakeptjw9jwsytkjal76d07an4thvvrfx3w2kt77pw4sc5rr8k',
-        { count: 4, page: 2 },
+        { count: 4, page: 2, order: 'asc' },
       ),
     path: mainnetUrl(
       '/accounts/stake1u88xakeptjw9jwsytkjal76d07an4thvvrfx3w2kt77pw4sc5rr8k/withdrawals',
@@ -155,7 +155,7 @@ export default [
     command: (SDK: BlockFrostAPI) =>
       SDK.accountsMirs(
         'stake1uyq7039vutuw8v7femqtktdu9zlhnqh3mkvvhdazft9ga2q8zdfkp',
-        { count: 1, page: 1 },
+        { count: 1, page: 1, order: 'asc' },
       ),
     path: mainnetUrl(
       '/accounts/stake1uyq7039vutuw8v7femqtktdu9zlhnqh3mkvvhdazft9ga2q8zdfkp/mirs',
@@ -405,7 +405,7 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
-      SDK.blocksPrevious('5360435', { count: 1 }),
+      SDK.blocksPrevious('5360435', { count: 4, page: 2, order: 'asc' }),
     path: mainnetUrl('/blocks/5360435/previous'),
     endpointMock: [],
     response: [],
@@ -665,7 +665,8 @@ export default [
     response: [],
   },
   {
-    command: (SDK: BlockFrostAPI) => SDK.epochsPrevious(250, { page: 1 }),
+    command: (SDK: BlockFrostAPI) =>
+      SDK.epochsPrevious(250, { count: 4, page: 1, order: 'asc' }),
     path: mainnetUrl('/epochs/250/previous'),
     endpointMock: [],
     response: [],
@@ -855,7 +856,7 @@ export default [
     command: (SDK: BlockFrostAPI) =>
       SDK.nutlinkAddressTickers(
         'addr1q85yx2w7ragn5sx6umgmtjpc3865s9sg59sz4rrh6f90kgwfwlzu3w8ttacqg89mkdgwshwnplj5c5n9f8dhp0h55q2q7qm63t',
-        { count: 3 },
+        { count: 3, page: 2, order: 'asc' },
       ),
     path: mainnetUrl(
       '/nutlink/addr1q85yx2w7ragn5sx6umgmtjpc3865s9sg59sz4rrh6f90kgwfwlzu3w8ttacqg89mkdgwshwnplj5c5n9f8dhp0h55q2q7qm63t/tickers',
@@ -891,7 +892,7 @@ export default [
       SDK.nutlinkAddressTicker(
         'addr1q85yx2w7ragn5sx6umgmtjpc3865s9sg59sz4rrh6f90kgwfwlzu3w8ttacqg89mkdgwshwnplj5c5n9f8dhp0h55q2q7qm63t',
         'ADAUSD',
-        { count: 2, page: 2 },
+        { count: 2, page: 2, order: 'asc' },
       ),
     path: mainnetUrl(
       '/nutlink/addr1q85yx2w7ragn5sx6umgmtjpc3865s9sg59sz4rrh6f90kgwfwlzu3w8ttacqg89mkdgwshwnplj5c5n9f8dhp0h55q2q7qm63t/tickers/ADAUSD',
@@ -901,7 +902,7 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
-      SDK.nutlinkTickers('ADAUSD', { count: 2, page: 2 }),
+      SDK.nutlinkTickers('ADAUSD', { count: 2, page: 2, order: 'asc' }),
     path: mainnetUrl('/nutlink/tickers/ADAUSD'),
     endpointMock: [],
     response: [],

@@ -2,9 +2,9 @@ import { BlockFrostIPFS } from '../../index';
 import { handleError } from '../../utils/errors';
 import { getPaginationOptions } from '../../utils';
 import { PaginationOptions } from '../../types';
-import { AddResponse, PinResponse, ListResponse } from '../../types/ipfs';
-import FormData from 'form-data';
-import fs from 'fs';
+import { PinResponse, ListResponse } from '../../types/ipfs';
+// import FormData from 'form-data';
+// import fs from 'fs';
 
 /**
  * Adds a file to IPFS
@@ -15,27 +15,27 @@ import fs from 'fs';
  * @param path - path to the file
  * @returns information about added ipfs object
  */
-export async function add(
-  this: BlockFrostIPFS,
-  path: string,
-): Promise<AddResponse> {
-  const stream = fs.createReadStream(path);
-  const data = new FormData();
+// export async function add( // TODO: Ky does not support streams
+//   this: BlockFrostIPFS,
+//   path: string,
+// ): Promise<AddResponse> {
+//   const stream = fs.createReadStream(path);
+//   const data = new FormData();
 
-  data.append('file', stream);
+//   data.append('file', stream);
 
-  try {
-    const res = await this.instance.post<AddResponse>(`ipfs/add`, {
-      body: data,
-      headers: {
-        'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
-      },
-    });
-    return res.body;
-  } catch (error) {
-    throw handleError(error);
-  }
-}
+//   try {
+//     const res = await this.instance.post<AddResponse>(`ipfs/add`, {
+//       body: data,
+//       headers: {
+//         'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
+//       },
+//     });
+//     return await res.json();
+//   } catch (error) {
+//     throw handleError(error);
+//   }
+// }
 
 /**
  * Retrieve an object from the IPFS gateway
@@ -55,7 +55,7 @@ export async function gateway(
     const res = await this.instance.get(`ipfs/gateway`, {
       searchParams: { path },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -81,7 +81,7 @@ export async function pin(
         ...(options?.filecoin !== undefined && { filecoin: options.filecoin }),
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -108,7 +108,7 @@ export async function list(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -128,7 +128,7 @@ export async function listByPath(
 ): Promise<ListResponse> {
   try {
     const res = await this.instance<ListResponse>(`ipfs/pin/list/${path}`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -148,7 +148,7 @@ export async function pinRemove(
 ): Promise<string> {
   try {
     const res = await this.instance.post<string>(`ipfs/pin/remove/${path}`);
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

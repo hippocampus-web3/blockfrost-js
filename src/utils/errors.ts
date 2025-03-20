@@ -1,4 +1,4 @@
-import { HTTPError } from 'got';
+import { HTTPError } from 'ky';
 import { GotError, ErrorType } from '../types';
 
 export class SignatureVerificationError extends Error {
@@ -74,18 +74,18 @@ export const handleError = (
 ): BlockfrostServerError | BlockfrostClientError => {
   if (error instanceof HTTPError) {
     let errorInstance: BlockfrostServerError;
-    const url = error.request.requestUrl;
+    const { url } = error.request;
     const responseBody = error.response.body;
 
     if (isBlockfrostErrorResponse(responseBody)) {
       errorInstance = new BlockfrostServerError({ ...responseBody, url });
     } else {
       // response.body may contain html output (eg. errors returned by nginx)
-      const { statusCode } = error.response;
-      const statusText = error.response.statusMessage ?? error.message;
+      // const { statusCode } = error.response; TODO: Incomplatible KY migration
+      const statusText = error.message;
       errorInstance = new BlockfrostServerError({
-        status_code: statusCode,
-        message: `${statusCode}: ${statusText}`,
+        status_code: -1,
+        message: `${-1}: ${statusText}`, // TODO: Incomplatible KY migration
         error: statusText,
         url,
         // Sometimes original body can be helpful so let's forward it
@@ -106,8 +106,8 @@ export const handleError = (
   // https://github.com/sindresorhus/got/blob/main/documentation/8-errors.md
 
   return new BlockfrostClientError({
-    code: (error as GotError).code ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
+    code: (error as GotError).name ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
     message: (error as GotError).message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
-    url: (error as GotError).request?.requestUrl,
+    url: (error as GotError).request?.url,
   });
 };

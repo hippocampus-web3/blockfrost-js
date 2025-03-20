@@ -1,31 +1,7 @@
-import {
-  CacheError,
-  CancelError,
-  TimeoutError,
-  RequestError,
-  ReadError,
-  ParseError,
-  UploadError,
-  HTTPError,
-  MaxRedirectsError,
-  UnsupportedProtocolError,
-  RequiredRetryOptions,
-  Options as GotOptions,
-} from 'got';
+import { HTTPError } from 'ky';
 import { RateLimiterConfig } from '../utils/limiter';
 
-export type GotError =
-  | CacheError
-  | CancelError
-  | TimeoutError
-  | RequestError
-  | ReadError
-  | ParseError
-  | UploadError
-  | HTTPError
-  | MaxRedirectsError
-  | UnsupportedProtocolError;
-
+export type GotError = HTTPError;
 type OptionCombination1 = {
   projectId: string;
   customBackend?: string;
@@ -44,8 +20,8 @@ type AdditionalOptions = {
   debug?: boolean;
   userAgent?: string;
   requestTimeout?: number;
-  retrySettings?: RequiredRetryOptions;
-  gotOptions?: GotOptions; // https://github.com/sindresorhus/got/blob/main/documentation/2-options.md
+  // retrySettings?: RequiredRetryOptions;
+  // gotOptions?: GotOptions; // https://github.com/sindresorhus/got/blob/main/documentation/2-options.md
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
@@ -62,8 +38,8 @@ export interface ValidatedOptions {
   debug: boolean;
   projectId?: string;
   network?: BlockfrostNetwork;
-  retrySettings?: RequiredRetryOptions;
-  gotOptions?: GotOptions;
+  // retrySettings?: RequiredRetryOptions;
+  // gotOptions?: GotOptions;
 }
 
 export type HashOrNumber = string | number;
@@ -85,9 +61,9 @@ export type ErrorType =
     };
 
 export type PaginationOptions = {
-  count?: number;
-  page?: number;
-  order?: 'asc' | 'desc';
+  count: number;
+  page: number;
+  order: 'asc' | 'desc';
 };
 
 export type AdditionalEndpointOptions = {

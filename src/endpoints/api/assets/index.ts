@@ -29,7 +29,7 @@ export async function assets(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -51,7 +51,7 @@ export async function assetsById(
     const res = await this.instance<components['schemas']['asset']>(
       `assets/${asset}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -84,7 +84,7 @@ export async function assetsHistory(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -138,7 +138,7 @@ export async function assetsTransactions(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -171,7 +171,7 @@ export async function assetsAddresses(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -204,7 +204,7 @@ export async function assetsPolicyById(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

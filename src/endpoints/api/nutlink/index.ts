@@ -12,7 +12,7 @@ export async function nutlinkAddress(
     const res = await this.instance<components['schemas']['nutlink_address']>(
       `nutlink/${address}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -35,7 +35,7 @@ export async function nutlinkAddressTickers(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -70,7 +70,7 @@ export async function nutlinkAddressTicker(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -105,7 +105,7 @@ export async function nutlinkTickers(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

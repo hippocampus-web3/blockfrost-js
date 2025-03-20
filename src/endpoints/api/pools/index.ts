@@ -29,7 +29,7 @@ export async function pools(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -69,7 +69,7 @@ export async function poolsRetired(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -100,7 +100,7 @@ export async function poolsRetiring(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -122,7 +122,7 @@ export async function poolsById(
     const res = await this.instance<components['schemas']['pool']>(
       `pools/${poolId}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -155,7 +155,7 @@ export async function poolsByIdHistory(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -177,7 +177,7 @@ export async function poolMetadata(
     const res = await this.instance<components['schemas']['pool_metadata']>(
       `pools/${poolId}/metadata`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -199,7 +199,7 @@ export async function poolsByIdRelays(
     const res = await this.instance<components['schemas']['pool_relays']>(
       `pools/${poolId}/relays`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -231,7 +231,7 @@ export async function poolsByIdDelegators(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -264,7 +264,7 @@ export async function poolsByIdBlocks(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -297,7 +297,7 @@ export async function poolsByIdUpdates(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -326,7 +326,7 @@ export async function poolsExtended(
         order: paginationOptions.order,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }

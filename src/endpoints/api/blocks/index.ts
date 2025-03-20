@@ -24,7 +24,7 @@ export async function blocks(
     const res = await this.instance<components['schemas']['block_content']>(
       `blocks/${hashOrNumber}`,
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -45,7 +45,7 @@ export async function blocksLatest(
       await this.instance<components['schemas']['block_content']>(
         `blocks/latest`,
       );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -76,7 +76,7 @@ export async function blocksLatestTxs(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -114,7 +114,7 @@ export async function blocksLatestTxsAll(
 export async function blocksNext(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  pagination?: Omit<PaginationOptions, 'order'>,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -128,7 +128,7 @@ export async function blocksNext(
       },
     });
 
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -146,7 +146,7 @@ export async function blocksNext(
 export async function blocksPrevious(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  pagination?: Omit<PaginationOptions, 'order'>,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -159,7 +159,7 @@ export async function blocksPrevious(
         count: paginationOptions.count,
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -192,7 +192,7 @@ export async function blocksTxs(
         },
       },
     );
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
@@ -234,7 +234,7 @@ export async function blocksTxsAll(
 export async function blocksAddresses(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  pagination?: Omit<PaginationOptions, 'order'>,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_addresses']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -248,7 +248,7 @@ export async function blocksAddresses(
         // order: paginationOptions.order, // no ordering on /blocks/{hash}/addresses
       },
     });
-    return res.body;
+    return await res.json();
   } catch (error) {
     throw handleError(error);
   }
